@@ -35,7 +35,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
             $idM = $linkpdo->prepare("SELECT idM from medecin where nom=:nomM");
 		$idM -> execute(array('nomM' => $nomM));
             $data1 = $idM->fetch();
-		echo "$data[0]";
+		echo "$data1[0]";
 
 						//requete de vérification du non-chevauchement du rendez-vous à ajouter
 						$res = $linkpdo->prepare("SELECT count(*)
@@ -48,12 +48,14 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 										group by rendezvous.idU");
 
 						$res -> execute(array('dateR' => $dateR, 'HeureR' => $HeureR, 'idU' => $data[0], 'heure' => $heureR, 'heure1' => $HeureR, 'duree' => $Duree));
+						var_dump($res);
 
 						// si on a au moins 1 ligne de retour dans le resulat de la requete alors on ajoute pas le rendez-vous
 						$cond = $res->fetch();
 						if($cond[0] > 0) {
 							$res2 = $linkpdo->prepare("INSERT INTO rendezvous(dateR, HeureR, duree, idU, idM) VALUES(:dateR, :HeureR, :Duree, :idU, :idM)");
 							$res2 -> execute(array('dateR' => $dateR, 'HeureR' => $HeureR, 'Duree' => $Duree, 'idU' => $data[0],'idM' => $data1[0]));
+							var_dump($res2);
 							header('Location: Affichage_consultation.php');
 
 						} else {
@@ -79,7 +81,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
                 <p>Prénom patient     <input type="text" name="prenomU"/></p>
                 <p>Date consultation     <input type="date" name="dateR"/></p>
                 <p>Heure consultation     <input type="time" name="HeureR"/></p>
-                <p>Durée consultation     <input type="time" name="Duree" value="<?php echo '00:30'?>"/></p>
+                <p>Durée consultation     <input type="time" name="Duree" value="<?php echo '00:30:00'?>"/></p>
 
                 <p><input class="survolVert" type="submit" value="Ajouter" name="Ajouter"> <input class="survolRouge" type="submit" value="Annuler" name="Annuler"></p>
         </form>
