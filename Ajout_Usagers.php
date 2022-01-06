@@ -41,7 +41,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			
 			if($data[0]==null) {
 				$req = $bdd -> prepare('INSERT INTO usager (idU,civilite,nom,prenom,adresse,codeP, dateN,lieuN,numS,idM) VALUES ('',:civilite, :nom, :prenom, :adresse, :codeP, :dateN, :lieuN, :numS, :idM)');
-				$req->execute(array('civilite'=>$civilite,'nom'=>$nom,'email'=>$email,'prenom'=>$prenom,'adresse'=>$adresse,'codeP'=>$codeP, 'dateN'=>$dateN,'lieuN'=>$lieuN, 'numS'=>$numS, 'idM'=>$idM));
+				$req->execute(array('civilite'=>$civilite,'nom'=>$nom,'prenom'=>$prenom,'adresse'=>$adresse,'codeP'=>$codeP, 'dateN'=>$dateN,'lieuN'=>$lieuN, 'numS'=>$numS, 'idM'=>$idM));
 			}
 
 			//redirection vers la page d'affichage des patients (usagers)
