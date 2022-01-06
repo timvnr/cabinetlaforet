@@ -47,11 +47,11 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 										or addtime(:Heure1,:Duree) between rendezvous.HeureR and addtime(rendezvous.HeureR,rendezvous.duree)
 										group by rendezvous.idU");
 
-						$res -> execute(array('dateR' => $dateR, 'HeureR' => $HeureR, 'idU' => $data[0], 'heure' => $heureR, 'heure1' => $heureR, 'duree' => $Duree));
+						$res -> execute(array('dateR' => $dateR, 'HeureR' => $HeureR, 'idU' => $data[0], 'heure' => $heureR, 'heure1' => $HeureR, 'duree' => $Duree));
 
 						// si on a au moins 1 ligne de retour dans le resulat de la requete alors on ajoute pas le rendez-vous
 						$cond = $res->fetch();
-						if($cond[0] == 0) {
+						if($cond[0] > 0) {
 							$res2 = $linkpdo->prepare("INSERT INTO rendezvous(dateR, HeureR, duree, idU, idM) VALUES(:dateR, :HeureR, :Duree, :idU, :idM)");
 							$res2 -> execute(array('dateR' => $dateR, 'HeureR' => $HeureR, 'Duree' => $Duree, 'idU' => $data[0],'idM' => $data1[0]));
 							header('Location: Affichage_consultation.php');
