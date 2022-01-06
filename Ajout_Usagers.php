@@ -40,14 +40,15 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$res2 = $linkpdo->prepare("SELECT idU FROM usager WHERE nom=:nom and prenom=:prenom");
 			$res2 -> execute(array('nom' => $nom ,'prenom' => $prenom ));
 			$data = $res2->fetch();
+			echo &data[0];
 
-			if($data[0]==null) {
-				$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES(:id, :civilite, :nom, :prenom, :adresse, :code,:dateN, :lieuN, :numS, :idM)');
-				$res -> execute(array('id' => $id, 'civilite' => $civilite, 'nom' => $nom, 'prenom' => $prenom, 'adresse' => $adresse, 'code' => $code, 'dateN' => $dateN, 'lieuN' =>$lieuN, 'numS' => $numS, 'idM' => $idM));
-			}
+			//if($data[0]==null) {
+			//	$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES(:id, :civilite, :nom, :prenom, :adresse, :code,:dateN, :lieuN, :numS, :idM)');
+			//	$res -> execute(array('id' => $id, 'civilite' => $civilite, 'nom' => $nom, 'prenom' => $prenom, 'adresse' => $adresse, 'code' => $code, 'dateN' => $dateN, 'lieuN' =>$lieuN, 'numS' => $numS, 'idM' => $idM));
+			//}
 
 			//redirection vers la page d'affichage des patients (usagers)
-			header('Location: Affichage_Usagers.php');
+			//header('Location: Affichage_Usagers.php');
 
 		}
 
