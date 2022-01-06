@@ -34,14 +34,14 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom='$nomM'");
 			var_dump($res3);
 			$data1 = $res3->fetch();
-			$idM = $data1[0];
+			$idM = $data1['idM'];
 
 			//requete pour avoir l'idU (id du patient) à partir de son nom et prénom
 			$res2 = $linkpdo->query("SELECT idU FROM usager WHERE nom='$nom' and prenom='$prenom'");
 			var_dump($res2);
 			$data = $res2->fetch();
 			
-			if($data[0]==null) {
+			if($data['idU']==null) {
 				$res = $linkpdo->query("INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code', '$dateN', '$lieuN', '$numS', '$idM')");
 				var_dump($res);
 			}
