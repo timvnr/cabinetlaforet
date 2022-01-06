@@ -2,11 +2,11 @@
     //il faut executer avant le fichier verif.php qui se connecte lui même à la base de donnée et vérifie si l'utilisateur est connecté
     require('verif.php');
 
-    $pos = strpos($_SERVER['HTTP_REFERER'],"M");
+    $pos = strpos($_SERVER['HTTP_REFERER'],"A");
     $url= substr($_SERVER['HTTP_REFERER'], $pos);
-    $consult = "M3104/ProjetPHP/Affichage_consultation.php";
-    $medecin = "M3104/ProjetPHP/Affichage_Medecin.php";
-    $patient = "M3104/ProjetPHP/Affichage_Usagers.php";
+    $consult = "Affichage_consultation.php";
+    $medecin = "Affichage_Medecin.php";
+    $patient = "Affichage_Usagers.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -103,7 +103,7 @@
             $idU = $_POST['idU'];
 
             //requete pour supprimer le patient choisi à partir de son identifiant (idU) stocker ci-dessus
-            $res = $linkpdo->query("DELETE FROM usager where idU = :idU");
+            $res = $linkpdo->prepare("DELETE FROM usager where idU = :idU");
 						$res -> execute(array('idU' => $idU));
             header('Location: Affichage_Usagers.php');
         }
