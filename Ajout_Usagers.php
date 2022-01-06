@@ -14,15 +14,43 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 		
 		//on inclue le header dans la page 
 		require('header.php');
+		
+		//si l'utilisateur appuie sur le bouton nommé "Ajouter"
+		if(isset($_POST['Ajouter'])) {
+			
+			//on stocke dans des variables les valeurs entrées dans le formulaire par l'utilisateur
+			$id = $_POST['id_usager'];
+			$civilite = $_POST['civilite'];
+			$nom = $_POST['nom'];
+			$prenom = $_POST['prenom'];
+			$adresse = $_POST['adresse'];
+			$code = $_POST['code'];
+			$dateN = $_POST['dateN'];
+			$lieuN = $_POST['lieuN'];
+			$numS = $_POST['numS'];
+			$nomM = $_POST['nom_medecin'];
+
+			//récupérer l'id du médecin à partir de son nom (récupération de l'idM)
+			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom='$nomM'");
+			$data1 = $res3->fetch();
+			$idM = $data1[0];
+
+			//requete pour avoir l'idU (id du patient) à partir de son nom et prénom
+			$res2 = $linkpdo->query("SELECT idU FROM usager WHERE nom='$nom' and prenom='$prenom'");
+			$data = $res2->fetch();
+
+			if($data[0]==null) {
+				$res = $linkpdo->query("INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code', '$dateN', '$lieuN', '$numS', '$idM')");
+			}
+			
+			//redirection vers la page d'affichage des patients (usagers)
+			header('Location: Affichage_Usagers.php');
+			
+		} 
 
 		//Si l'utilisateur appuie sur le bouton "Annuler"...
 		if(isset($_POST['Annuler'])) {
 
-			//Redirection vers la page d'affichage des patients / usagers
-			header('Location: Affichage_Usagers.php');
-		}
-		
-		if(isset($_POST['Ajouter'])) {
 			//Redirection vers la page d'affichage des patients / usagers
 			header('Location: Affichage_Usagers.php');
 		}
