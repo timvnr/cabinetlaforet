@@ -28,13 +28,14 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 
             //requete pour récuperer l'idU donc l'id du patient à partir de son nom et prénom
             $idU = $linkpdo->prepare("SELECT idU from usager where nom=:nomU and prenom=:prenomU");
-						$idU -> execute(array('nomU' => $nomU, 'prenomU' => $prenomU));
+		$idU -> execute(array('nomU' => $nomU, 'prenomU' => $prenomU));
             $data = $idU->fetch();
 
             //requete pour récuperer l'idM donc l'id du médecin à partir de son nom
             $idM = $linkpdo->prepare("SELECT idM from medecin where nom=:nomM");
-						$idM -> execute(array('nomM' => $nomM));
+		$idM -> execute(array('nomM' => $nomM));
             $data1 = $idM->fetch();
+		echo "$data[0]";
 
 						//requete de vérification du non-chevauchement du rendez-vous à ajouter
 						$res = $linkpdo->prepare("SELECT count(*)
