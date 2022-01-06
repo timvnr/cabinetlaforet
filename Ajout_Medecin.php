@@ -29,7 +29,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$res2 = $linkpdo->prepare("SELECT idM FROM medecin WHERE nom=:nom and prenom=:prenom");
 			$res2 -> execute(array('nom' => $nom, 'prenom' => $prenom));
 			$data = $res2->fetch();
-			echo "$data['idM']";
+			echo $data[0];
 
 			//Si le médecin n'existe pas dans la base de données, on l'ajoute avec la requete ci-dessous
 			if($data['idM']==null) {
