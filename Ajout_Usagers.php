@@ -16,7 +16,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 		require('header.php');
 
 		//si l'utilisateur appuie sur le bouton nommé "Ajouter"
-		if(isset($_POST['AjouterPatient'])) {
+		if(isset($_POST['Ajouter'])) {
 			
 			//on stocke dans des variables les valeurs entrées dans le formulaire par l'utilisateur
 			$id = $_POST['id_usager'];
@@ -55,6 +55,11 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			//Redirection vers la page d'affichage des patients / usagers
 			header('Location: Affichage_Usagers.php');
 		}
+		
+		if(isset($_POST['Ajouter'])) {
+			//Redirection vers la page d'affichage des patients / usagers
+			header('Location: Affichage_Usagers.php');
+		}
 		 
     ?> 
 
@@ -74,7 +79,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 				<p>Numéro de sécurité social    <input type="text" name="numS"/></p>
 				<p>Nom médecin référent   <input type="text" name="nom_medecin"/></p>
 				
-				<p><input class="survolVert" type="submit" value="Ajouter" name="AjouterPatient"> <input class="survolRouge" type="submit" value="Annuler" name="Annuler"></p>
+				<p><input class="survolVert" type="submit" value="Ajouter" name="Ajouter"> <input class="survolRouge" type="submit" value="Annuler" name="Annuler"></p>
 		</form>
 	</div>
 
