@@ -28,6 +28,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			//Requête pour rechercher l'id d'un médecin (idM) à partir de son nom et de son prénom
 			$res2 = $linkpdo->prepare("SELECT idM FROM medecin WHERE nom=:nom and prenom=:prenom");
 			$res2 -> execute(array('nom' => $nom, 'prenom' => $prenom));
+			var_dump($res2);
 			$data = $res2->fetch();
 
 			//Si le médecin n'existe pas dans la base de données, on l'ajoute avec la requete ci-dessous
@@ -36,6 +37,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 				//Requête pour ajouter un médecin dans la base de données à partir des informations saisies par l'utilisateur
 				$res = $linkpdo->prepare("INSERT INTO medecin(idM, civilite, nom, prenom) VALUES('$id', '$civilite', '$nom', '$prenom')");
 				$res -> execute(array('id' => $id, 'civilite' => $civilite,'nom' => $nom, 'prenom' => $prenom));
+				var_dump($res);
 			}
 
 			//Redirection vers la page d'affichage des médecins
