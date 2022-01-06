@@ -17,6 +17,20 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 		
 		//si l'utilisateur appuie sur le bouton nommé "Ajouter"
 		if(isset($_POST['Ajouter'])) {
+			
+			//on stocke dans des variables les valeurs entrées dans le formulaire par l'utilisateur
+			$id = $_POST['id_usager'];
+			$civilite = $_POST['civilite'];
+			$nom = $_POST['nom'];
+			$prenom = $_POST['prenom'];
+			$adresse = $_POST['adresse'];
+			$code = $_POST['code'];
+			$dateN = $_POST['dateN'];
+			$lieuN = $_POST['lieuN'];
+			$numS = $_POST['numS'];
+			$nomM = $_POST['nom_medecin'];
+
+
 			//redirection vers la page d'affichage des patients (usagers)
 			header('Location: Affichage_Usagers.php');
 			
