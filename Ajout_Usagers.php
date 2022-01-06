@@ -31,24 +31,20 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$nomM = $_POST['nom_medecin'];
 
 			//récupérer l'id du médecin à partir de son nom (récupération de l'idM)
-			$res3 = $linkpdo->prepare("SELECT idM FROM medecin WHERE nom= :nom ");
-			$res3 -> execute(array('nom' => $nom));
+			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom= '$nom' ");
 			$data1 = $res3->fetch();
 			$idM = $data1[0];
 
 			//requete pour avoir l'idU (id du patient) à partir de son nom et prénom
-			$res2 = $linkpdo->prepare("SELECT idU FROM usager WHERE nom=:nom and prenom=:prenom");
-			$res2 -> execute(array('nom' => $nom ,'prenom' => $prenom ));
+			$res2 = $linkpdo->query("SELECT idU FROM usager WHERE nom='$nom' and prenom='$prenom'");
 			$data = $res2->fetch();
-			echo &data[0];
 
-			//if($data[0]==null) {
-			//	$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES(:id, :civilite, :nom, :prenom, :adresse, :code,:dateN, :lieuN, :numS, :idM)');
-			//	$res -> execute(array('id' => $id, 'civilite' => $civilite, 'nom' => $nom, 'prenom' => $prenom, 'adresse' => $adresse, 'code' => $code, 'dateN' => $dateN, 'lieuN' =>$lieuN, 'numS' => $numS, 'idM' => $idM));
-			//}
+			if($data[0]==null) {
+				$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code','$dateN', '$lieuN', '$numS', '$data[0]')');
+			}
 
 			//redirection vers la page d'affichage des patients (usagers)
-			//header('Location: Affichage_Usagers.php');
+			header('Location: Affichage_Usagers.php');
 
 		}
 
