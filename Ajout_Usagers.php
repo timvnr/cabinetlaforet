@@ -40,7 +40,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$res2 = $linkpdo->prepare("SELECT idU FROM usager WHERE nom=:nom and prenom=:prenom");
 			$res2 -> execute(array('nom' => $nom ,'prenom' => $prenom ));
 			$data = $res2->fetch();
-			echo '&data[0]';
+			echo &data[0];
 
 			//if($data[0]==null) {
 			//	$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES(:id, :civilite, :nom, :prenom, :adresse, :code,:dateN, :lieuN, :numS, :idM)');
