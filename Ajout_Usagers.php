@@ -1,4 +1,4 @@
-<?php
+<?php 
 require('verif.php'); //il faut executer avant le fichier verif.php qui se connecte lui même à la base de donnée et vérifie si l'utilisateur est connecté
 ?>
 <!DOCTYPE HTML>
@@ -9,15 +9,15 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
         <meta charset="utf-8"/>
 	</head>
 	<body>
-
-    <?php
-
-		//on inclue le header dans la page
+		
+    <?php 
+		
+		//on inclue le header dans la page 
 		require('header.php');
 
 		//si l'utilisateur appuie sur le bouton nommé "Ajouter"
 		if(isset($_POST['Ajouter'])) {
-
+			
 			//on stocke dans des variables les valeurs entrées dans le formulaire par l'utilisateur
 			$id = $_POST['id_usager'];
 			$civilite = $_POST['civilite'];
@@ -31,7 +31,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$nomM = $_POST['nom_medecin'];
 
 			//récupérer l'id du médecin à partir de son nom (récupération de l'idM)
-			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom= '$nom' ");
+			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom='$nomM'");
 			$data1 = $res3->fetch();
 			$idM = $data1[0];
 
@@ -40,13 +40,13 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$data = $res2->fetch();
 
 			if($data[0]==null) {
-				$res = $linkpdo->query('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code','$dateN', '$lieuN', '$numS', '$data[0]')');
+				$res = $linkpdo->query("INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code', '$dateN', '$lieuN', '$numS', '$idM')");
 			}
-
+			
 			//redirection vers la page d'affichage des patients (usagers)
 			header('Location: Affichage_Usagers.php');
-
-		}
+			
+		} 
 
 		//Si l'utilisateur appuie sur le bouton "Annuler"...
 		if(isset($_POST['Annuler'])) {
@@ -54,8 +54,8 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			//Redirection vers la page d'affichage des patients / usagers
 			header('Location: Affichage_Usagers.php');
 		}
-
-    ?>
+		 
+    ?> 
 
 	<div class="aligneSpecial">
 		<h2>Page ajout usager</h2>
@@ -72,7 +72,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 				<p>Lieu de naissance    <input type="text" name="lieuN"/></p>
 				<p>Numéro de sécurité social    <input type="text" name="numS"/></p>
 				<p>Nom médecin référent   <input type="text" name="nom_medecin"/></p>
-
+				
 				<p><input class="survolVert" type="submit" value="Ajouter" name="Ajouter"> <input class="survolRouge" type="submit" value="Annuler" name="Annuler"></p>
 		</form>
 	</div>
