@@ -40,7 +40,7 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$data = $res2->fetch();
 
 			if($data[0]==null) {
-				$res = $linkpdo->prepare('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code','$dateN', '$lieuN', '$numS', '$data[0]')');
+				$res = $linkpdo->query('INSERT INTO usager(idU, civilite, nom, prenom, adresse, codeP, dateN, lieuN, numS, idM) VALUES('$id', '$civilite', '$nom', '$prenom', '$adresse', '$code','$dateN', '$lieuN', '$numS', '$data[0]')');
 			}
 
 			//redirection vers la page d'affichage des patients (usagers)
