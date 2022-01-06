@@ -3,10 +3,10 @@
 	session_start();
 
 	//On stocke dans des variables les différentes informations nécessaire à la connexion à la base de données
-    $server= "localhost";
-	$login = "root";
-	$mdp = "najHu8-jitpog-tomtow";
-	$db = "id18235240_cabinetlaforet";
+    $server= "eu-cdbr-west-02.cleardb.net";
+	$login = "b548aae8146e4d";
+	$mdp = "f589b150";
+	$db = "heroku_ff207826a0fbec5";
 
 	///Connexion au serveur MySQL
 	try {
