@@ -3,9 +3,9 @@
     require('verif.php');
 
     //Manipulation avec l'url de la page précédente pour la rendre universelle et enlever le nom de domaine qui se trouve avant (en locurence pour nous le "http://localhost")
-    $pos = strpos($_SERVER['HTTP_REFERER'],"M");
+    $pos = strpos($_SERVER['HTTP_REFERER'],"A");
     $url= substr($_SERVER['HTTP_REFERER'], $pos);
-    $consult = "M3104/ProjetPHP/Affichage_consultation.php";
+    $consult = "Affichage_consultation.php";
 ?>
 <!DOCTYPE HTML>
 <html>
