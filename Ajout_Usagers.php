@@ -29,7 +29,15 @@ require('verif.php'); //il faut executer avant le fichier verif.php qui se conne
 			$lieuN = $_POST['lieuN'];
 			$numS = $_POST['numS'];
 			$nomM = $_POST['nom_medecin'];
+			
+			//récupérer l'id du médecin à partir de son nom (récupération de l'idM)
+			$res3 = $linkpdo->query("SELECT idM FROM medecin WHERE nom='$nomM'");
+			$data1 = $res3->fetch();
+			$idM = $data1[0];
 
+			//requete pour avoir l'idU (id du patient) à partir de son nom et prénom
+			$res2 = $linkpdo->query("SELECT idU FROM usager WHERE nom='$nom' and prenom='$prenom'");
+			$data = $res2->fetch();
 
 			//redirection vers la page d'affichage des patients (usagers)
 			header('Location: Affichage_Usagers.php');
